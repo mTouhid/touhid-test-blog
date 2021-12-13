@@ -1,3 +1,3 @@
-<h1><%= @article.title %></h1>
+<h1 class="display-1"><%= @article.title %></h1>
 <p><%= @article.description %></p>
-<p><%= link_to 'Edit this article', edit_article_path(@article) %> | <%= link_to 'Delete', article_path(@article), method: :delete, data: { confirm: "Are you sure?" } %> | <%= link_to 'Return to main', articles_path %></p>
+<%= link_to 'Edit this article', edit_article_path(@article), class: "btn btn-warning" %> <%= link_to 'Delete', article_path(@article), method: :delete, class:"btn btn-danger", data: { confirm: "Are you sure?" } %>
