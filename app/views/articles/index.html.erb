@@ -1,20 +1,17 @@
 <h1 class="display-1">Articles</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Description</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @articles.each do |a| %>
-    <tr>
-      <th scope="row"><%= a.title %></td>
-      <td><%= a.description %></td>
-      <td><%= link_to 'Show', article_path(a), class: "btn btn-primary" %> <%= link_to 'Edit', edit_article_path(a), class: "btn btn-warning" %> <%= link_to 'Delete', article_path(a), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @articles.each do |a| %>
+  <div class="card">
+    <div class="card-header">
+      Author: 
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= a.title %></h5>
+      <p class="card-text"><%= a.description %></p>
+      <%= link_to 'Show', article_path(a), class: "btn btn-primary" %> <%= link_to 'Edit', edit_article_path(a), class: "btn btn-warning" %> <%= link_to 'Delete', article_path(a), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+  </div>
+<% end %>
 <%= link_to 'Create new article', new_article_path, class: "btn btn-success" %>
