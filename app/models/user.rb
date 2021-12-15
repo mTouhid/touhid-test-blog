@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :articles
+  has_secure_password
 
   before_save :make_email_downcase
 
