@@ -1,0 +1,16 @@
+<h1 class="display-1">Signup as a new user</h1>
+
+<%= form_with(scope: :session, url: login_path, class: "shadow col-10 border mt-4 p-4", local: true) do |f| %>
+
+  <div class="mb-3">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control form-control-lg", placeholder: "Enter your email address" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password, class: "form-label" %>
+    <%= f.password_field :password, class: "form-control form-control-lg", placeholder: "Enter your password" %>
+  </div>
+
+  <%= f.submit "Login", class: "btn btn-success mb-3" %>
+
+<% end %>
