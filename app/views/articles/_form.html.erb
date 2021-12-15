@@ -1,14 +1,16 @@
 <%= render 'layouts/errors', obj: @article %>
-<%= form_with(model: @article, local: true) do |f| %>
+
+<%= form_with(model: @article, local: true, class: "shadow col-10 border mt-4 p-4") do |f| %>
+
 <div class="mb-3">
   <%= f.label :title, class: "form-label" %>
-  <%= f.text_field :title, class: "form-control" %>
+  <%= f.text_field :title, class: "form-control form-control-lg" %>
 </div>
 
 <div class="mb-3">
   <%= f.label :description, class: "form-label" %>
-  <%= f.text_area :description, class: "form-control" %>
+  <%= f.text_area :description, class: "form-control form-control-lg", rows: "10" %>
 </div>
 
-<%= f.submit :Submit, class: "btn btn-success" %> <%= link_to "Cancel", articles_path, class: "btn btn-secondary" %>
+<%= f.submit(@article.new_record? ? "Create a new article" : "Update this article", class: "btn btn-success") %> <%= link_to "Cancel", articles_path, class: "btn btn-secondary" %>
 <% end %>
