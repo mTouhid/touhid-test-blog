@@ -1,0 +1,10 @@
+<% if obj.errors.any? %>
+<div class="alert alert-danger col-10" role="alert">
+  <h3>Errors, when creating <%= obj.class.name.downcase %>:</h3>
+  <ul>
+    <% obj.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
