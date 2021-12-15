@@ -1,4 +1,8 @@
-<div class="content text-center">
-<h1 class="display-1">Welcome to this test blog.</h1>
-<%= link_to "Sign up", signup_path, class: "btn btn-primary btn-lg" %>
+<div class="card bg-dark text-white mt-4">
+  <%= image_tag("blog_home_bg.jpg", alt: "Test blog", class: "card-img", height: "450") %>
+  <div class="card-img-overlay text-center mt-4">
+    <h1 class="display-1">Welcome to this test blog.</h1>
+    <p>This is done as part of a training course on ruby on rails.</p>
+    <%= link_to "Sign up", signup_path, class: "btn btn-primary btn-lg" %>
+  </div>
 </div>

@@ -21,6 +21,6 @@
     </div>
   </div>
 
-  <%= f.submit :Submit, class: "btn btn-success mb-3" %>
+  <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-success mb-3") %>
 
 <% end %>
