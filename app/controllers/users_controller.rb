@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      flash[:notice] = "User created successfully."
+      flash[:success] = "User created successfully."
       redirect_to root_path
     else
       render 'new'
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      flash[:notice] = "Your account information was updated successfully."
+      flash[:success] = "Your account information was updated successfully."
       redirect_to articles_path
     else
       render 'edit'
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
   def require_account_owner
     if current_user != @user
-      flash[:alert] = "You are not allowed to perform this action"
+      flash[:warning] = "You are not allowed to perform this action"
       redirect_to user_path
     end
   end
