@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :require_logged_in, only: [:edit, :update, :destroy]
+  before_action :require_account_owner, only: [:edit, :update, :destroy]
+
+  def index
+    @users = User.all
+  end
 
   def show
     @articles = @user.articles
@@ -33,6 +39,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    session[:user_id] = nil
+    redirect_to users_path
+  end
+
   private
 
   def set_user
@@ -41,5 +53,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :email, :password)
+  end
+
+  def require_account_owner
+    if current_user != @user
+      flash[:alert] = "You are not allowed to perform this action"
+      redirect_to user_path
+    end
   end
 end

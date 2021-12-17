@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_logged_in, except: [:index, :show]
+  before_action :require_the_author, only: [:edit, :destroy]
 
   def index
     @articles = Article.all
@@ -19,7 +21,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user_id = User.find((1..User.count).to_a.shuffle[1]).id
+    @article.user_id = current_user.id
     if @article.save
       flash[:notice] = "Article was created successfully."
       redirect_to @article
@@ -50,5 +52,12 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def require_the_author
+    if current_user != @article.user
+      flash[:alert] = "You do not have permission to edit this article."
+      redirect_to article_path
+    end
   end
 end
